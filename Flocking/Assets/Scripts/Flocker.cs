@@ -7,17 +7,17 @@ public class Flocker : Kinematic
 {
     BlendedSteering myMoveType;
     List<Flocker> flock;
+    //Kinematic flockCenter;
 
     // Start is called before the first frame update
     void Start()
     {
+        //flockCenter = new GameObject().AddComponent<Kinematic>();
         List<BehaviorAndWeight> behaviors = new();
         flock = new (Flock.instance.flockers.ToArray());
         flock.Remove(this);
 
         myMoveType = new ();
-        myMoveType.maxAcceleration = maxSpeed;
-        myMoveType.maxRotation = maxAngularVelocity;
         
         Separation separation = new ();
         separation.character = this;
@@ -48,6 +48,20 @@ public class Flocker : Kinematic
     // Update is called once per frame
     protected override void Update()
     {
+        //Vector3 center = Vector3.zero;
+        //Vector3 velocity = Vector3.zero;
+        //foreach (Flocker flocker in flock)
+        //{
+        //    center += flocker.transform.position;
+        //    velocity += flocker.linearVelocity;
+        //}
+        //center /= flock.Count;
+        //velocity /= flock.Count;
+
+        //if (flock.Count < 1) return;
+        //flockCenter.transform.position = center;
+        //flockCenter.linearVelocity = velocity;
+
         steeringUpdate = new SteeringOutput();
         steeringUpdate.linear = myMoveType.getSteering().linear;
         steeringUpdate.angular = myMoveType.getSteering().angular;

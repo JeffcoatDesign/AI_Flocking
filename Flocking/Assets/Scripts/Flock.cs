@@ -19,18 +19,18 @@ public class Flock : MonoBehaviour
 
     private void Update()
     {
-        Vector3 center = Vector3.zero;
-        Vector3 velocity = Vector3.zero;
-        foreach (Flocker flocker in flockers)
-        {
-            center += flocker.transform.position;
-            velocity += flocker.linearVelocity;
-        }
-        center /= flockers.Count;
-        velocity /= flockers.Count;
+        //Vector3 center = Vector3.zero;
+        //Vector3 velocity = Vector3.zero;
+        //foreach (Flocker flocker in flockers)
+        //{
+        //    center += flocker.transform.position;
+        //    velocity += flocker.linearVelocity;
+        //}
+        //center /= flockers.Count;
+        //velocity /= flockers.Count;
 
-        if (flockers.Count < 1) return;
-        flockCenter.transform.position = center;
-        flockCenter.linearVelocity = velocity;
+        //if (flockers.Count < 1) return;
+        //flockCenter.transform.position = center;
+        //flockCenter.linearVelocity = velocity;
     }
 }

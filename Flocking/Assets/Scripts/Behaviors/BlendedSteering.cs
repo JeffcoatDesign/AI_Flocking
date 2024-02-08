@@ -15,8 +15,8 @@ public class BlendedSteering : SteeringBehavior
 {
     public BehaviorAndWeight[] behaviors;
 
-    public float maxAcceleration;
-    public float maxRotation;
+    float maxAcceleration = 1f;
+    float maxRotation = 5f;
 
     public override SteeringOutput getSteering()
     {
@@ -29,8 +29,16 @@ public class BlendedSteering : SteeringBehavior
             result.angular += behavior.weight * behaviourOutput.angular;
         }
 
-        result.linear = Vector3.Min(result.linear, Vector3.one * maxAcceleration);
-        result.angular = Mathf.Min(result.angular, maxRotation);
+        //result.linear = Vector3.Min(result.linear, Vector3.one * maxAcceleration);
+        //result.angular = Mathf.Min(result.angular, maxRotation);
+
+        result.linear = result.linear * maxAcceleration;
+        float angular = Mathf.Abs(result.angular);
+        if (angular > maxRotation)
+        {
+            result.angular /= angular;
+            result.angular *= maxAcceleration;
+        }
         return result;
     }
 }
